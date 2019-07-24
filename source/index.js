@@ -171,6 +171,7 @@ module.exports = async (input = 'patch', options) => {
 		]);
 	}
 
+	let isPushed = false
 	tasks.add({
 		title: 'Pushing tags',
 		skip: async () => {
@@ -182,11 +183,17 @@ module.exports = async (input = 'patch', options) => {
 				return 'Couldn\'t publish package to npm; not pushing.';
 			}
 		},
-		task: () => git.push()
+		task: async () => {
+			await git.push()
+			isPushed = true
+		}
 	});
 
 	await tasks.run();
 
 	const {package: newPkg} = await readPkgUp();
+
+	console.log(`\n ${newPkg.name} ${newPkg.version} updated ${isPushed ? 'and pushed 🎉' : 'NOT pushed!!'}`);
+
 	return newPkg;
 };

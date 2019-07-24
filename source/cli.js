@@ -111,7 +111,6 @@ const cli = meow(`
 
 	console.log(); // Prints a newline for readability
 	const newPkg = await np(options.version, options);
-	console.log(`\n ${newPkg.name} ${newPkg.version} published 🎉`);
 })().catch(error => {
 	console.error(`\n${logSymbols.error} ${error.message}`);
 	process.exit(1);
