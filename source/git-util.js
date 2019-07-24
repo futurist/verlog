@@ -86,7 +86,6 @@ exports.verifyRemoteHistoryIsClean = async () => {
 exports.verifyRemoteIsValid = async () => {
 	try {
 		const {remote} = await getRemoteBranch()
-		console.log('retmeor', remote)
 		await execa('git', ['ls-remote', remote || 'origin', 'HEAD']);
 	} catch (error) {
 		throw new Error(error.stderr.replace('fatal:', 'Git fatal error:'));
@@ -166,7 +165,8 @@ async function getRemoteBranch () {
 exports.getRemoteBranch = getRemoteBranch;
 
 exports.push = async () => {
-	await execa('git', ['push', '--follow-tags']);
+	const {remote} = await getRemoteBranch()
+	await execa('git', ['push', remote, 'HEAD', '--follow-tags']);
 };
 
 exports.deleteTag = async tagName => {

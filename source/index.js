@@ -145,6 +145,7 @@ module.exports = async (input = 'patch', options) => {
 				await writePkg(rootDir, pkg, {normalize: false})
 				await exec('git', ['add', '-u'])
 				await exec('git', ['commit', '-m', `build: ${options.version}`])
+				await git.push()
 			}
 		})
 	} else {
