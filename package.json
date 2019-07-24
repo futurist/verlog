@@ -5,8 +5,9 @@
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "http://gitlab.alibaba-inc.com/DTBoost-Apps/dtboost-v2.git"
+		"url": "http://gitlab.alibaba-inc.com/bigdata-node/verlog.git"
 	},
+	"author": "jamesyang.yjm",
 	"bin": {
 		"ver": "source/cli.js"
 	},

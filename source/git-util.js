@@ -86,7 +86,7 @@ exports.verifyRemoteHistoryIsClean = async () => {
 exports.verifyRemoteIsValid = async () => {
 	try {
 		const {remote} = await getRemoteBranch()
-		await execa('git', ['ls-remote', remote || 'origin', 'HEAD']);
+		await execa('git', ['ls-remote', remote, 'HEAD']);
 	} catch (error) {
 		throw new Error(error.stderr.replace('fatal:', 'Git fatal error:'));
 	}
@@ -151,22 +151,25 @@ const commitLogFromRevision = async (revision, args = []) => {
 exports.commitLogFromRevision = commitLogFromRevision
 
 async function getRemoteBranch () {
-	const {stdout} = await execa('git', 'rev-parse --abbrev-ref --symbolic-full-name @{u}'.split(' '))
-	if(!stdout) {
-		return {}
-	}
-	const [remote, ...branch] = stdout.split('/')
+	try {
+		const {stdout} = await execa('git', 'rev-parse --abbrev-ref --symbolic-full-name @{u}'.split(' '))
+		if(!stdout) {
+			return {}
+		}
+		const [remote, ...branch] = stdout.split('/')
 
-	return {
-		remote,
-		branch: branch.join('/')
+		return {
+			remote,
+			branch: branch.join('/')
+		}
+	}catch(e){
+		return {}
 	}
 }
 exports.getRemoteBranch = getRemoteBranch;
 
 exports.push = async () => {
-	const {remote} = await getRemoteBranch()
-	await execa('git', ['push', remote, 'HEAD', '--follow-tags']);
+	await execa('git', ['push', '--follow-tags']);
 };
 
 exports.deleteTag = async tagName => {

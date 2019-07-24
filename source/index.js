@@ -145,7 +145,6 @@ module.exports = async (input = 'patch', options) => {
 				await writePkg(rootDir, pkg, {normalize: false})
 				await exec('git', ['add', '-u'])
 				await exec('git', ['commit', '-m', `build: ${options.version}`])
-				await git.push()
 			}
 		})
 	} else {
@@ -170,21 +169,21 @@ module.exports = async (input = 'patch', options) => {
 				task: () => exec('npm', ['version', '-f', input])
 			}
 		]);
-
-		false && tasks.add({
-			title: 'Pushing tags',
-			skip: async () => {
-				if (!(await git.hasUpstream())) {
-					return 'Upstream branch not found; not pushing.';
-				}
-
-				if (!isPublished && runPublish) {
-					return 'Couldn\'t publish package to npm; not pushing.';
-				}
-			},
-			task: () => git.push()
-		});
 	}
+
+	tasks.add({
+		title: 'Pushing tags',
+		skip: async () => {
+			if (!(await git.hasUpstream())) {
+				return 'Upstream branch not found; not pushing.';
+			}
+
+			if (!isPublished && runPublish) {
+				return 'Couldn\'t publish package to npm; not pushing.';
+			}
+		},
+		task: () => git.push()
+	});
 
 	await tasks.run();
 
