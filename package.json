@@ -77,5 +77,8 @@
 	},
 	"publishConfig": {
 		"registry": "http://registry.npm.alibaba-inc.com"
-	}
+	},
+	"readme": "ERROR: No README data found!",
+	"_id": "verlog@1.0.0",
+	"build": 1
 }
