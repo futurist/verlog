@@ -11,7 +11,8 @@
 		"name": "jamesyang.yjm"
 	},
 	"bin": {
-		"ver": "source/cli.js"
+		"ver": "source/cli.js",
+		"vl": "source/cli.js"
 	},
 	"engines": {
 		"node": ">=8",
