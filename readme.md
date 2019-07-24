@@ -12,9 +12,7 @@ tnpm i -g @ali/verlog
 
 ## Usage
 
-```sh
-ver
-```
+Run `vl` or `ver` from your repo.
 
 If you choose `build`, update a build number and commit.
 
