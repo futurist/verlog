@@ -7,7 +7,9 @@
 		"type": "git",
 		"url": "http://gitlab.alibaba-inc.com/bigdata-node/verlog.git"
 	},
-	"author": "jamesyang.yjm",
+	"author": {
+		"name": "jamesyang.yjm"
+	},
 	"bin": {
 		"ver": "source/cli.js"
 	},
@@ -80,6 +82,6 @@
 		"registry": "http://registry.npm.alibaba-inc.com"
 	},
 	"readme": "ERROR: No README data found!",
-	"_id": "verlog@1.0.0",
-	"build": 1
+	"_id": "verlog@1.0.1",
+	"build": 2
 }
