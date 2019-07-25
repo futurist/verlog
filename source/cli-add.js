@@ -12,6 +12,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 
 const open = require('open');
+const getPort = require('get-port');
 const execa = require('execa')
 const onExit = require('signal-exit')
 const AnsiToHtml = require('ansi-to-html');
@@ -56,6 +57,10 @@ const cli = meow(`
 			if(args.indexOf('--amend') > -1 && !commits.length) {
 				args.unshift('--no-edit')
 			}
+			if(args.length === 0){
+				res.json({message: 'Cannot commit empty'})
+				return
+			}
 			const {command, stdout} = await execa('git', ['commit', ...args])
 			console.log(command);
 			console.log(stdout);
@@ -66,10 +71,15 @@ const cli = meow(`
 			})
 		}
 	})
-	var server = app.listen(15678, async ()=>{
-		const {address, port} = server.address()
-		console.log(`listen on:\n${address}:${port}`)
-		await open('http://localhost:' + port);
+	const PORT = await getPort()
+	var server = app.listen(PORT, async ()=>{
+		let {address, port} = server.address()
+		if(address.startsWith('::')) {
+			address = 'localhost'
+		}
+		let link = `http://${address}:${port}`
+		console.log(`listen on:\n${link}`)
+		await open(link);
 	})
 	onExit(function (code, signal) {
 		console.log('process exited!')

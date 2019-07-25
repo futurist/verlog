@@ -87,10 +87,12 @@
 			} else {
 				dialog.innerHTML = ret.message || 'error'
 				dialog.showModal()
+				dialog.onclick = e=>dialog.close()
 			}
 		}).catch(err=>{
 			dialog.innerHTML = err.message
 			dialog.showModal()
+			dialog.onclick = e=>dialog.close()
 		})
 	}
 	function parseCommitMessage (message) {
