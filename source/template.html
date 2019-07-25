@@ -7,6 +7,7 @@
 	<label>amend? <input type="checkbox" onclick="submitArgs = (this.checked ? ['--amend'] : [])"></label>
 </div>
 <dialog id="result"></dialog>
+<dialog id="error"></dialog>
 <template id="input-template"><style>
 		:host {
 			font-size: 12px;
@@ -63,6 +64,25 @@
 		}
 		return arr.length
 	}
+	let lastStatus = {}
+	function statusCheck(){
+		fetch('/status')
+		.then(r=>r.text())
+		.then(text=>{
+			lastStatus.title = text
+			document.title = text + " - diff"
+		})
+		.catch(err=>{
+			console.log(err)
+			lastStatus.offline = true
+			document.title = 'OFFLINE:' + lastStatus.title
+			const errDialog = document.getElementById('error')
+			errDialog.close()
+			errDialog.innerHTML = err
+			errDialog.showModal()
+		})
+	}
+	setInterval(statusCheck, 1000)
 	var submitArgs = []
 	function submit(){
 		const allInputs = [...document.querySelectorAll('commit-input')]
@@ -189,7 +209,10 @@
 				}
 			}
 			this.input.onblur = e=>this.updateMessage()
-			this.select.oninput = e=>this.updateMessage()
+			this.select.oninput = e=>{
+				this.updateMessage()
+				this.focus()
+			}
 			this.onKeyDown = (e) => {
 				const hasCtrl = e.metaKey || e.ctrlKey
 				switch(e.code) {

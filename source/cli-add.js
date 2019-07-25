@@ -17,6 +17,8 @@ const execa = require('execa')
 const onExit = require('signal-exit')
 const AnsiToHtml = require('ansi-to-html');
 
+const pkg = util.readPkg();
+
 const cli = meow(`
 	Usage
 	  $ va [args]
@@ -46,6 +48,9 @@ const cli = meow(`
 		const template = fs.readFileSync(path.join(__dirname, 'template.html'), 'utf8')
 		const result = template.replace('{{DIFF}}', convert.toHtml(stdout))
 		res.send(result)
+	})
+	app.get('/status', (req, res)=>{
+		res.end(pkg.name)
 	})
 	app.post('/commit', async (req, res)=>{
 		console.log(req.body)
