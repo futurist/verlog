@@ -1,6 +1,7 @@
 # verlog
 
-This is a fork of [np](https://github.com/sindresorhus/np)
+This is a fork of [np](https://github.com/sindresorhus/np), but heavily modified.
+
 
 Generate Version and Changelog for git repo
 

@@ -1,0 +1,273 @@
+<div style="display: flex;">
+	<div style="flex:3; position: relative;" id="left"></div>
+	<div style="flex:7; position: relative; font-size: 14px;">{{DIFF}}</div>
+</div>
+<div id="footer">
+	<button onclick="submit()">提交</button>
+</div>
+<dialog id="result"></dialog>
+<template id="input-template"><style>
+		:host {
+			font-size: 12px;
+			height: 100%;
+			min-height: 100px;
+			display: flex;
+			flex-direction: column;
+		}
+		input {
+			width: 100%;
+			border: 1px solid #eee;
+			line-height: 1.5em;
+			color: #0048ff;
+		}
+		select {
+			width: 70px;
+		}
+		span {
+			padding: 0 10px;
+		}
+		.item {
+			cursor: pointer;
+		}
+		.title {
+			display: flex;
+		}
+	</style>
+	<div class="title">
+		<span>1</span>
+		<select tabindex="-1">
+			<option value="">none</option>
+			<option value="fix">fix</option>
+			<option value="feat">feat</option>
+			<option value="chore">chore</option>
+			<option value="docs">docs</option>
+			<option value="style">style</option>
+			<option value="refactor">refactor</option>
+			<option value="perf">perf</option>
+			<option value="test">test</option>
+			<option value="BREAKING CHANGE">BREAKING CHANGE</option>
+		</select>
+		<input>
+	</div>
+	<div></div></template>
+<script>
+	const allBlockNodes = []
+	const store = {
+		lastInput: '',
+		inputs: new Set()
+	}
+	function addToArray(arr, value) {
+		if(arr.indexOf(value) < 0) {
+			arr.push(value)
+		}
+		return arr.length
+	}
+	function submit(){
+		const allInputs = [...document.querySelectorAll('commit-input')]
+		const values = [...new Set(allInputs.map(input=>input.getValue()).filter(Boolean))]
+		console.log(values)
+		const dialog = document.getElementById('result')
+		if(dialog.open) dialog.close()
+		fetch('/commit', {
+			body: JSON.stringify({commits: values}),
+			method: 'POST',
+			headers:{
+				'Content-Type':'application/json',
+				Accept: 'application/json'
+			}
+		}).then(r=>r.json()).then(ret=>{
+			if(ret.ok) {
+				dialog.innerHTML = 'ok'
+				dialog.showModal()
+			} else {
+				dialog.innerHTML = ret.message || 'error'
+				dialog.showModal()
+			}
+		}).catch(err=>{
+			dialog.innerHTML = err.message
+			dialog.showModal()
+		})
+	}
+	function parseCommitMessage (message) {
+		let value = message
+		let prefix = ''
+		const match = /^(.*?): (.*)$/.exec(message)
+		if(match) {
+			value = match[2]
+			prefix = match[1]
+		}
+		return {value, prefix}
+	}
+	function setInputValue(item){
+		const root = item.getRootNode().host
+		const valueToSet = item.textContent
+		addToArray(root.history.values, valueToSet)
+		const {value, prefix} = parseCommitMessage(valueToSet)
+		const con = item.parentNode.previousElementSibling
+		const input = con.lastElementChild
+		const select = input.previousElementSibling
+		input.value = value
+		select.value = prefix
+	}
+	function getList(){
+		const html = `<div style="overflow: scroll;">`+Array.from(store.inputs).map(value=>(
+			`<div
+			class="item"
+			onclick="setInputValue(this)">${value}</div>`
+		)).join('')+`</div>`
+		return createElementFromHTML(html)
+	}
+	function updateAllList(){
+		allBlockNodes.map(div=>div.querySelector('commit-input')).map(v=>v.updateList())
+	}
+	class CommitInput extends HTMLElement {
+		constructor(){
+			super()
+			const root = this.root = this.attachShadow({ 'mode': 'open' })
+			root.appendChild(document.getElementById('input-template').content.cloneNode(true))
+			this.input = root.querySelector('input')
+			this.span = root.querySelector('span')
+			this.select = root.querySelector('select')
+			this.span.innerHTML = (this.dataset.index | 0) + 1;
+			this.history = {
+				index: 0,
+				values: [],
+				getNext() {
+					if(this.values.length < 1) return
+					const nextIndex = ()=>{
+						this.index = (this.index - 1) % this.values.length
+						if(this.index < 0) {
+							this.index = this.values.length + this.index
+						}
+					}
+					nextIndex()
+					while(this.index<0 || this.index >= this.values.length) nextIndex()
+					return this.values[this.index]
+				}
+			}
+			this.focus = () => this.input.focus()
+			this.updateList = ()=>{
+				root.removeChild(root.lastElementChild)
+				root.appendChild(getList())
+			}
+			this.input.onfocus = e=>{
+				const el = e.target
+				const {lastInput} = store
+				if(lastInput) {
+					const {value, prefix} = parseCommitMessage(lastInput)
+					addToArray(this.history.values, lastInput)
+					el.value = value
+					this.select.value = prefix
+					el.select()
+				}
+			}
+			this.getValue = ()=>{
+				let {value} = this.input
+				if(value.trim()){
+					if(this.select.value){
+						value = this.select.value + ': ' + value
+					}
+				}
+				return value
+			}
+			this.updateMessage = ()=>{
+				let {value} = this.input
+				if(value.trim()){
+					if(this.select.value){
+						value = this.select.value + ': ' + value
+					}
+					store.lastInput = value
+					store.inputs.add(value)
+					updateAllList()
+				}
+			}
+			this.input.onblur = e=>this.updateMessage()
+			this.select.oninput = e=>this.updateMessage()
+			this.onKeyDown = (e) => {
+				const hasCtrl = e.metaKey || e.ctrlKey
+				switch(e.code) {
+					case 'Enter':
+					case 'Tab':
+					{
+						e.preventDefault()
+						this.updateMessage()
+						const index = allBlockNodes.indexOf(this.parentElement)
+						const next = allBlockNodes[e.shiftKey ? index - 1 : index + 1]
+						if(next) {
+							const nextInput = next.querySelector('commit-input')
+							nextInput.focus()
+							nextInput.scrollIntoView({behavior: 'smooth', block: 'center', inline: 'center'})
+						}
+						break
+					}
+					case 'KeyZ': {
+						e.preventDefault()
+						const message = this.history.getNext()
+						if(!message) return
+						const oldValue = this.getValue()
+						addToArray(this.history.values, oldValue)
+						const {value, prefix} = parseCommitMessage(message)
+						this.input.value = value
+						this.select.value = prefix
+						this.input.select()
+					}
+				}
+			}
+		}
+		connectedCallback() {
+			this.input.addEventListener('keydown', this.onKeyDown)
+		}
+		disconnectedCallback() {
+			this.input.removeEventListener('keydown', this.onKeyDown)
+		}
+	}
+	customElements.define('commit-input', CommitInput);
+</script>
+
+<script>
+	function info(node) {
+		return {
+			node,
+			top: node.offsetTop,
+			height: node.offsetHeight
+		}
+	}
+	function last(arr) {
+		return arr[arr.length-1]
+	}
+
+	const blocks = []
+	let list = [
+		...document.querySelectorAll('span[style="color:#A00"],span[style="color:#0A0"]'),
+	].map(info)
+	let block = []
+	blocks.push(block)
+	list.forEach((info,i)=>{
+		block.push(info)
+		const next = list[i+1]
+		if(!next) return
+		if(next.top == info.top) return
+		if(next.top != info.top + info.height) {
+			block = []
+			blocks.push(block)
+		}
+	})
+
+	const div = document.getElementById('left')
+	blocks.forEach((block, i)=>{
+		const top = block[0].top
+		const bottom = last(block).top + last(block).height
+		const blockNode = createElementFromHTML(`<div style="background:#66d7ff;width:100%; position: absolute; left:0; top: ${top}px; height:${bottom-top}px">
+			<commit-input data-index=${i} id="block${i}"></commit-input></dvi>`);
+		allBlockNodes.push(blockNode)
+		div.appendChild(blockNode)
+	})
+	// div.querySelector('commit-input').focus()
+
+	function createElementFromHTML(htmlString) {
+		var div = document.createElement('div');
+		div.innerHTML = htmlString.trim();
+		// Change this to div.childNodes to support multiple top-level nodes
+		return div.firstChild;
+	}
+</script>

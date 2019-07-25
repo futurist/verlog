@@ -12,8 +12,9 @@
 		"name": "jamesyang.yjm"
 	},
 	"bin": {
-		"ver": "source/cli.js",
-		"vl": "source/cli.js"
+		"verlog": "source/cli.js",
+		"vl": "source/cli.js",
+		"va": "source/cli-add.js"
 	},
 	"engines": {
 		"node": ">=8",
@@ -40,13 +41,16 @@
 	],
 	"dependencies": {
 		"@samverschueren/stream-to-observable": "^0.3.0",
+		"ansi-to-html": "^0.6.11",
 		"any-observable": "^0.4.0",
 		"async-exit-hook": "^2.0.1",
+		"body-parser": "^1.19.0",
 		"chalk": "^2.3.0",
 		"cosmiconfig": "^5.2.1",
 		"del": "^4.1.0",
 		"escape-string-regexp": "^2.0.0",
 		"execa": "^2.0.1",
+		"express": "^4.17.1",
 		"github-url-from-git": "^1.5.0",
 		"has-yarn": "^2.1.0",
 		"hosted-git-info": "^2.7.1",
@@ -68,6 +72,7 @@
 		"read-pkg-up": "^6.0.0",
 		"rxjs": "^6.3.3",
 		"semver": "^6.1.2",
+		"signal-exit": "^3.0.2",
 		"split": "^1.0.0",
 		"symbol-observable": "^1.2.0",
 		"terminal-link": "^1.2.0",

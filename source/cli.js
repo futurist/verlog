@@ -15,7 +15,8 @@ const np = require('.');
 
 const cli = meow(`
 	Usage
-	  $ np <version>
+	  $ vl <version>
+	  $ verlog <version>
 
 	  Version can be:
 	    ${version.SEMVER_INCREMENTS.join(' | ')} | 1.2.3
@@ -33,11 +34,11 @@ const cli = meow(`
 	  --no-change-log     Skips generate change log
 
 	Examples
-	  $ np
-	  $ np patch
-	  $ np 1.0.2
-	  $ np 1.0.2-beta.3 --tag=beta
-	  $ np 1.0.2-beta.3 --tag=beta --contents=dist
+	  $ vl
+	  $ vl patch
+	  $ vl 1.0.2
+	  $ vl 1.0.2-beta.3 --tag=beta
+	  $ vl 1.0.2-beta.3 --tag=beta --contents=dist
 `, {
 	booleanDefault: undefined,
 	flags: {
