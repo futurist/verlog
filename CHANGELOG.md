@@ -1,3 +1,9 @@
+<a name="1.0.5"></a>
+## [1.0.5](https://gitlab.alibaba-inc.com/bigdata-node/verlog/compare/1.0.4...1.0.5) (2019-7-25 17:22:06)
+
+- (va) use random port  [d230df6](https://gitlab.alibaba-inc.com/bigdata-node/verlog/commit/d230df6)
+
+
 <a name="1.0.4"></a>
 ## [1.0.4](https://gitlab.alibaba-inc.com/bigdata-node/verlog/compare/1.0.3...1.0.4) (2019-7-25 16:23:26)
 
