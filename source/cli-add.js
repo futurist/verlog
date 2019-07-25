@@ -11,6 +11,7 @@ const fs = require('fs')
 const express = require('express')
 const bodyParser = require('body-parser')
 
+const open = require('open');
 const execa = require('execa')
 const onExit = require('signal-exit')
 const AnsiToHtml = require('ansi-to-html');
@@ -48,20 +49,27 @@ const cli = meow(`
 	app.post('/commit', async (req, res)=>{
 		console.log(req.body)
 		try{
+			const {commits} = req.body
 			await execa('git', ['add', '.'])
-			const args = []
-			req.body.commits.forEach(msg=>args.push('-m', msg))
-			await execa('git', ['commit', ...args])
-			res.json({ok: 1})
+			const args = req.body.args || []
+			commits.forEach(msg=>args.push('-m', msg))
+			if(args.indexOf('--amend') > -1 && !commits.length) {
+				args.unshift('--no-edit')
+			}
+			const {command, stdout} = await execa('git', ['commit', ...args])
+			console.log(command);
+			console.log(stdout);
+			res.json({ok: 1, command, stdout})
 		}catch(e){
 			res.json({
 				message: e.message
 			})
 		}
 	})
-	var server = app.listen(8888, ()=>{
+	var server = app.listen(15678, async ()=>{
 		const {address, port} = server.address()
 		console.log(`listen on:\n${address}:${port}`)
+		await open('http://localhost:' + port);
 	})
 	onExit(function (code, signal) {
 		console.log('process exited!')

@@ -2,8 +2,9 @@
 	<div style="flex:3; position: relative;" id="left"></div>
 	<div style="flex:7; position: relative; font-size: 14px;">{{DIFF}}</div>
 </div>
-<div id="footer">
+<div id="footer" style="position: relative; display: flex;">
 	<button onclick="submit()">提交</button>
+	<label>amend? <input type="checkbox" onclick="submitArgs = (this.checked ? ['--amend'] : [])"></label>
 </div>
 <dialog id="result"></dialog>
 <template id="input-template"><style>
@@ -62,6 +63,7 @@
 		}
 		return arr.length
 	}
+	var submitArgs = []
 	function submit(){
 		const allInputs = [...document.querySelectorAll('commit-input')]
 		const values = [...new Set(allInputs.map(input=>input.getValue()).filter(Boolean))]
@@ -69,7 +71,10 @@
 		const dialog = document.getElementById('result')
 		if(dialog.open) dialog.close()
 		fetch('/commit', {
-			body: JSON.stringify({commits: values}),
+			body: JSON.stringify({
+				commits: values,
+				args: submitArgs
+			}),
 			method: 'POST',
 			headers:{
 				'Content-Type':'application/json',
@@ -77,7 +82,7 @@
 			}
 		}).then(r=>r.json()).then(ret=>{
 			if(ret.ok) {
-				dialog.innerHTML = 'ok'
+				dialog.innerHTML = `OK<pre>$ ${ret.command}</pre><pre>${ret.stdout}</pre>`
 				dialog.showModal()
 			} else {
 				dialog.innerHTML = ret.message || 'error'
