@@ -1,3 +1,9 @@
+<a name="1.0.6"></a>
+## [1.0.6](https://gitlab.alibaba-inc.com/bigdata-node/verlog/compare/1.0.5...1.0.6) (2019-7-25 17:58:30)
+
+- feat: (va) add /status check  [3043b88](https://gitlab.alibaba-inc.com/bigdata-node/verlog/commit/3043b88)
+
+
 <a name="1.0.5"></a>
 ## [1.0.5](https://gitlab.alibaba-inc.com/bigdata-node/verlog/compare/1.0.4...1.0.5) (2019-7-25 17:22:06)
 
