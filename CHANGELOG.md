@@ -1,3 +1,12 @@
+<a name="1.0.4"></a>
+## [1.0.4](https://gitlab.alibaba-inc.com/bigdata-node/verlog/compare/1.0.3...1.0.4) (2019-7-25 16:23:26)
+
+- feat: auto open diff page  [58f2a0f](https://gitlab.alibaba-inc.com/bigdata-node/verlog/commit/58f2a0f)
+- add va bin  [f4725d3](https://gitlab.alibaba-inc.com/bigdata-node/verlog/commit/f4725d3)
+- clean up package.json  [ac10392](https://gitlab.alibaba-inc.com/bigdata-node/verlog/commit/ac10392)
+- update docs  [90b6d18](https://gitlab.alibaba-inc.com/bigdata-node/verlog/commit/90b6d18)
+
+
 <a name="1.0.3"></a>
 ## [1.0.3](https://gitlab.alibaba-inc.com/bigdata-node/verlog/compare/1.0.2...1.0.3) (2019-7-24 19:14:57)
 
