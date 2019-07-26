@@ -43,8 +43,7 @@ const cli = meow(`
 	var app = express()
 	app.use(bodyParser.json())
 	app.get('/', async (req, res)=>{
-		await execa('git', ['add', '.'])
-		const {stdout} = await execa('git', ['diff', '--cached', '--color'])
+		const {stdout} = await execa('git', ['diff', '--color'])
 		const template = fs.readFileSync(path.join(__dirname, 'template.html'), 'utf8')
 		const result = template.replace('{{DIFF}}', convert.toHtml(stdout))
 		res.send(result)
@@ -66,10 +65,10 @@ const cli = meow(`
 				res.json({message: 'Cannot commit empty'})
 				return
 			}
-			const {command, stdout} = await execa('git', ['commit', ...args])
+			const {command, stdout, stderr, all, exitCode} = await execa('git', ['commit', ...args])
 			console.log(command);
-			console.log(stdout);
-			res.json({ok: 1, command, stdout})
+			console.log(all);
+			res.json({ok: !exitCode, command, all})
 		}catch(e){
 			res.json({
 				message: e.message

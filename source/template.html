@@ -88,6 +88,9 @@
 		const allInputs = [...document.querySelectorAll('commit-input')]
 		const values = [...new Set(allInputs.map(input=>input.getValue()).filter(Boolean))]
 		console.log(values)
+		if(!confirm('Confirm commit message:\n'+ values.join('\n'))) {
+			return
+		}
 		const dialog = document.getElementById('result')
 		if(dialog.open) dialog.close()
 		fetch('/commit', {
@@ -101,13 +104,13 @@
 				Accept: 'application/json'
 			}
 		}).then(r=>r.json()).then(ret=>{
-			if(ret.ok) {
-				dialog.innerHTML = `OK<pre>$ ${ret.command}</pre><pre>${ret.stdout}</pre>`
-				dialog.showModal()
-			} else {
-				dialog.innerHTML = ret.message || 'error'
-				dialog.showModal()
-				dialog.onclick = e=>dialog.close()
+			dialog.innerHTML = `${ret.ok ? 'OK' : 'Fail'}<pre>$ ${ret.command}</pre><pre>${ret.message || ret.all}</pre>`
+			dialog.showModal()
+			dialog.onclick = e=>{
+				dialog.close()
+				if(ret.ok){
+					window.location.reload()
+				}
 			}
 		}).catch(err=>{
 			dialog.innerHTML = err.message
@@ -217,6 +220,10 @@
 				const hasCtrl = e.metaKey || e.ctrlKey
 				switch(e.code) {
 					case 'Enter':
+						if(hasCtrl) {
+							submit()
+							break
+						}
 					case 'Tab':
 					{
 						e.preventDefault()
@@ -240,6 +247,7 @@
 						this.input.value = value
 						this.select.value = prefix
 						this.input.select()
+						break
 					}
 				}
 			}
@@ -284,7 +292,7 @@
 	})
 
 	const div = document.getElementById('left')
-	blocks.forEach((block, i)=>{
+	blocks.filter(block=>block.length).forEach((block, i)=>{
 		const top = block[0].top
 		const bottom = last(block).top + last(block).height
 		const blockNode = createElementFromHTML(`<div style="background:#66d7ff;width:100%; position: absolute; left:0; top: ${top}px; height:${bottom-top}px">
