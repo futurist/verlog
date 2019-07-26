@@ -1,3 +1,9 @@
+<a name="1.0.9"></a>
+## [1.0.9](https://gitlab.alibaba-inc.com/bigdata-node/verlog/compare/1.0.8...1.0.9) (2019-7-26 13:26:16)
+
+- fix: remove client offline check due to bug  [28fe2fa](https://gitlab.alibaba-inc.com/bigdata-node/verlog/commit/28fe2fa)
+
+
 <a name="1.0.8"></a>
 ## [1.0.8](https://gitlab.alibaba-inc.com/bigdata-node/verlog/compare/1.0.7...1.0.8) (2019-7-26 12:03:45)
 
