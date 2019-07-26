@@ -3,8 +3,12 @@
 	<div style="flex:7; position: relative; font-size: 14px;">{{DIFF}}</div>
 </div>
 <div id="footer" style="position: relative; display: flex;">
+	<button onclick="fetch('/add').then(r=>r.json()).then(data=>{
+		data.ok && location.reload()
+		data.message && alert(data.message)
+	})">add</button>&nbsp;
 	<input id="additional-message" placeholder="additional message"> &nbsp;
-	<button onclick="submit()">提交</button>&nbsp;
+	<button onclick="submit()">commit</button>&nbsp;
 	<label>amend? <input type="checkbox" onclick="submitArgs = (this.checked ? ['--amend'] : [])"></label>
 </div>
 <dialog id="result"></dialog>

@@ -76,6 +76,14 @@ const cli = meow(`
 		res.end('')
 		process.exit(req.query.code|0)
 	})
+	app.get('/add', async (req, res)=>{
+		try{
+			const {command, all, exitCode} = await execa('git', ['add', '.'])
+			res.json({ok:!exitCode, all, message: exitCode && all})
+		}catch(e){
+			res.json({error:e.message})
+		}
+	})
 	app.post('/commit', async (req, res)=>{
 		console.log(req.body)
 		try{
