@@ -55,7 +55,20 @@ const cli = meow(`
 		const result = template.replace('{{DIFF}}', newFiles + convert.toHtml(stdout))
 		res.send(result)
 	})
+
+	// close server if client is offline
+	let lastStatusCheck
+	const statusCheck = ()=>{
+		if(lastStatusCheck && Date.now() - lastStatusCheck > 2000) {
+			console.log('client offline, now exit')
+			process.exit(0)
+		}
+	}
+	setInterval(statusCheck, 300)
+
+	// status check provider
 	app.get('/status', (req, res)=>{
+		lastStatusCheck = Date.now()
 		res.end(pkg.name)
 	})
 	app.post('/commit', async (req, res)=>{
