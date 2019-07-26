@@ -1,3 +1,10 @@
+<a name="1.0.11"></a>
+## [1.0.11](https://gitlab.alibaba-inc.com/bigdata-node/verlog/compare/1.0.10...1.0.11) (2019-7-26 16:28:26)
+
+- add /add api  [948435b](https://gitlab.alibaba-inc.com/bigdata-node/verlog/commit/948435b)
+- add end button after commit  [f5f211c](https://gitlab.alibaba-inc.com/bigdata-node/verlog/commit/f5f211c)
+
+
 <a name="1.0.10"></a>
 ## [1.0.10](https://gitlab.alibaba-inc.com/bigdata-node/verlog/compare/1.0.9...1.0.10) (2019-7-26 14:10:21)
 
