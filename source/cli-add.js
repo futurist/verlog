@@ -47,7 +47,10 @@ const cli = meow(`
 		if(newFiles) {
 			newFiles = `<b style="color:red">New files:</b><br>${newFiles.split('\n').map(v=>`<div style="color:red">${v}</div>`).join('\n')}<br>`
 		}
-		const {stdout} = await execa('git', ['diff', '--color'])
+		let {stdout} = await execa('git', ['diff', '--color'])
+		if(!stdout) {
+			stdout = (await execa('git', ['diff', '--cached', '--color'])).stdout
+		}
 		const template = fs.readFileSync(path.join(__dirname, 'template.html'), 'utf8')
 		const result = template.replace('{{DIFF}}', newFiles + convert.toHtml(stdout))
 		res.send(result)

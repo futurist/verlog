@@ -3,6 +3,7 @@
 	<div style="flex:7; position: relative; font-size: 14px;">{{DIFF}}</div>
 </div>
 <div id="footer" style="position: relative; display: flex;">
+	<input id="additional-message" placeholder="additional message"> &nbsp;
 	<button onclick="submit()">提交</button>&nbsp;
 	<label>amend? <input type="checkbox" onclick="submitArgs = (this.checked ? ['--amend'] : [])"></label>
 </div>
@@ -85,10 +86,11 @@
 	setInterval(statusCheck, 1000)
 	var submitArgs = []
 	function submit(){
+		const additionalMessage = document.getElementById('additional-message').value
 		const allInputs = [...document.querySelectorAll('commit-input')]
-		const values = [...new Set(allInputs.map(input=>input.getValue()).filter(Boolean))]
+		const values = [...new Set([additionalMessage].concat(allInputs.map(input=>input.getValue())).filter(Boolean))]
 		console.log(values)
-		if(!confirm('Confirm commit message:\n'+ values.join('\n'))) {
+		if(values.length && !confirm('Confirm commit message:\n'+ values.join('\n'))) {
 			return
 		}
 		const dialog = document.getElementById('result')
