@@ -72,6 +72,10 @@ const cli = meow(`
 		lastStatusCheck = Date.now()
 		res.end(pkg.name)
 	})
+	app.get('/end', (req, res)=>{
+		res.end('')
+		process.exit(req.query.code|0)
+	})
 	app.post('/commit', async (req, res)=>{
 		console.log(req.body)
 		try{
