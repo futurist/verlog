@@ -66,9 +66,6 @@
 <script>
 	const dialog = document.getElementById('result')
 
-	window.onbeforeunload = e=>{
-		fetch('/end')
-	}
 	const allBlockNodes = []
 	const store = {
 		lastInput: '',
@@ -79,6 +76,9 @@
 			arr.push(value)
 		}
 		return arr.length
+	}
+	function arrayUnique(arr){
+		return Array.from(new Set(arr))
 	}
 	let lastStatus = {}
 	function statusCheck(){
@@ -100,10 +100,14 @@
 	}
 	setInterval(statusCheck, 1000)
 	var submitArgs = []
-	function submit(){
+	function getAllMessage (){
 		const additionalMessage = document.getElementById('additional-message').value
-		const allInputs = [...document.querySelectorAll('commit-input')]
-		const values = [...new Set([additionalMessage].concat(allInputs.map(input=>input.getValue())).filter(Boolean))]
+		const messageList = [...document.querySelectorAll('commit-input')].map(input=>input.getValue())
+		const values = arrayUnique([additionalMessage].concat(messageList).filter(Boolean))
+		return {additionalMessage, messageList, values}
+	}
+	function submit(){
+		const {values} = getAllMessage()
 		console.log(values)
 		if(values.length && !confirm('Confirm commit message:\n'+ values.join('\n'))) {
 			return
@@ -160,7 +164,23 @@
 		)).join('')+`</div>`
 		return createElementFromHTML(html)
 	}
-	function updateAllList(){
+	function restoreMessage(){
+		const additionalMessage = localStorage.getItem('additionalMessage') || ''
+		let messageList = []
+		try{
+			messageList = JSON.parse(localStorage.getItem('messageList')) || []
+		}catch(e){}
+		if(Array.isArray(messageList)){
+			allBlockNodes.map(div=>div.querySelector('commit-input')).slice(0, messageList.length).map((v,i)=>{
+				v.setValue(messageList[i])
+			})
+		}
+		document.getElementById('additional-message').value = additionalMessage
+	}
+	function updateAllList() {
+		const {additionalMessage, messageList, values} = getAllMessage()
+		localStorage.setItem('additionalMessage', additionalMessage || '')
+		localStorage.setItem('messageList', JSON.stringify(arrayUnique(messageList)))
 		allBlockNodes.map(div=>div.querySelector('commit-input')).map(v=>v.updateList())
 	}
 	class CommitInput extends HTMLElement {
@@ -196,12 +216,17 @@
 			this.input.onfocus = e=>{
 				const el = e.target
 				const {lastInput} = store
-				if(lastInput) {
-					const {value, prefix} = parseCommitMessage(lastInput)
-					addToArray(this.history.values, lastInput)
-					el.value = value
+				this.setValue(lastInput, true)
+			}
+			this.setValue = (messageValue, isFocus)=>{
+				if(messageValue) {
+					const {value, prefix} = parseCommitMessage(messageValue)
+					addToArray(this.history.values, messageValue)
+					this.input.value = value
 					this.select.value = prefix
-					el.select()
+					if(isFocus){
+						this.input.select()
+					}
 				}
 			}
 			this.getValue = ()=>{
@@ -331,6 +356,7 @@
 		div.appendChild(blockNode)
 	})
 	// div.querySelector('commit-input').focus()
+	restoreMessage()
 
 	function createElementFromHTML(htmlString) {
 		var div = document.createElement('div');
