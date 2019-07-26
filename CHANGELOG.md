@@ -1,3 +1,13 @@
+<a name="1.0.7"></a>
+## [1.0.7](https://gitlab.alibaba-inc.com/bigdata-node/verlog/compare/1.0.6...1.0.7) (2019-7-26 11:29:21)
+
+- feat: add additional-message input  [5592513](https://gitlab.alibaba-inc.com/bigdata-node/verlog/commit/5592513)
+- fix: (template) command undefined bug  [11d680a](https://gitlab.alibaba-inc.com/bigdata-node/verlog/commit/11d680a)
+- feat: add shortcut for select msg type  [c3d0280](https://gitlab.alibaba-inc.com/bigdata-node/verlog/commit/c3d0280)
+- add new files track  [807c6f3](https://gitlab.alibaba-inc.com/bigdata-node/verlog/commit/807c6f3)
+- submit confirm  [9532438](https://gitlab.alibaba-inc.com/bigdata-node/verlog/commit/9532438)
+
+
 <a name="1.0.6"></a>
 ## [1.0.6](https://gitlab.alibaba-inc.com/bigdata-node/verlog/compare/1.0.5...1.0.6) (2019-7-25 17:58:30)
 
