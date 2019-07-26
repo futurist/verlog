@@ -79,7 +79,7 @@
 			document.title = 'OFFLINE:' + lastStatus.title
 			const errDialog = document.getElementById('error')
 			errDialog.close()
-			errDialog.innerHTML = err
+			errDialog.innerHTML = `<h4>OFFLINE? You can close this window now.</h4>${err}`
 			errDialog.showModal()
 		})
 	}
