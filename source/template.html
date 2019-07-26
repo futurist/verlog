@@ -218,7 +218,7 @@
 			}
 			this.onKeyDown = (e) => {
 				const hasCtrl = e.metaKey || e.ctrlKey
-				switch(e.code) {
+				switch(e.key) {
 					case 'Enter':
 						if(hasCtrl) {
 							submit()
@@ -237,7 +237,7 @@
 						}
 						break
 					}
-					case 'KeyZ': {
+					case 'z': {
 						e.preventDefault()
 						const message = this.history.getNext()
 						if(!message) return
@@ -276,7 +276,7 @@
 
 	const blocks = []
 	let list = [
-		...document.querySelectorAll('span[style="color:#A00"],span[style="color:#0A0"]'),
+		...document.querySelectorAll('span[style="color:#A00"],span[style="color:#0A0"],div[style="color:red"]'),
 	].map(info)
 	let block = []
 	blocks.push(block)

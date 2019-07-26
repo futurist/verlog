@@ -43,9 +43,13 @@ const cli = meow(`
 	var app = express()
 	app.use(bodyParser.json())
 	app.get('/', async (req, res)=>{
+		let {stdout: newFiles} = await execa('git', 'ls-files --others --exclude-standard'.split(' '))
+		if(newFiles) {
+			newFiles = `<b style="color:red">New files:</b><br>${newFiles.split('\n').map(v=>`<div style="color:red">${v}</div>`).join('\n')}<br>`
+		}
 		const {stdout} = await execa('git', ['diff', '--color'])
 		const template = fs.readFileSync(path.join(__dirname, 'template.html'), 'utf8')
-		const result = template.replace('{{DIFF}}', convert.toHtml(stdout))
+		const result = template.replace('{{DIFF}}', newFiles + convert.toHtml(stdout))
 		res.send(result)
 	})
 	app.get('/status', (req, res)=>{
