@@ -64,7 +64,8 @@ const cli = meow(`
 			process.exit(0)
 		}
 	}
-	setInterval(statusCheck, 300)
+	// TODO: BUG: has unwanted close!
+	// setInterval(statusCheck, 300)
 
 	// status check provider
 	app.get('/status', (req, res)=>{
