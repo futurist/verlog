@@ -54,6 +54,8 @@
 	</div>
 	<div></div></template>
 <script>
+	const dialog = document.getElementById('result')
+
 	const allBlockNodes = []
 	const store = {
 		lastInput: '',
@@ -93,7 +95,6 @@
 		if(values.length && !confirm('Confirm commit message:\n'+ values.join('\n'))) {
 			return
 		}
-		const dialog = document.getElementById('result')
 		if(dialog.open) dialog.close()
 		fetch('/commit', {
 			body: JSON.stringify({
@@ -107,18 +108,14 @@
 			}
 		}).then(r=>r.json()).then(ret=>{
 			const command = ret.command ? `<pre>$ ${ret.command}</pre>` : ''
-			dialog.innerHTML = `${ret.ok ? 'OK' : 'Fail'}${command}<pre>${ret.message || ret.all}</pre>`
+			const actions = ret.ok
+			? `<button onclick="window.location.reload()">Reload Page</button>`
+			: `<button onclick="dialog.close()">Close Dialog</button>`
+			dialog.innerHTML = `${ret.ok ? 'OK' : 'Fail'}${command}<pre>${ret.message || ret.all}</pre>${actions}`
 			dialog.showModal()
-			dialog.onclick = e=>{
-				dialog.close()
-				if(ret.ok){
-					window.location.reload()
-				}
-			}
 		}).catch(err=>{
-			dialog.innerHTML = err.message
+			dialog.innerHTML = err.message + `<div><button onclick="dialog.close()">Close Dialog</button></div>`
 			dialog.showModal()
-			dialog.onclick = e=>dialog.close()
 		})
 	}
 	function parseCommitMessage (message) {
