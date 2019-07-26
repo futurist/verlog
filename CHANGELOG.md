@@ -1,3 +1,10 @@
+<a name="1.0.8"></a>
+## [1.0.8](https://gitlab.alibaba-inc.com/bigdata-node/verlog/compare/1.0.7...1.0.8) (2019-7-26 12:03:45)
+
+- feat: close server if client is offline  [4db80c2](https://gitlab.alibaba-inc.com/bigdata-node/verlog/commit/4db80c2)
+- feat: add offline message tip  [b6dfaff](https://gitlab.alibaba-inc.com/bigdata-node/verlog/commit/b6dfaff)
+
+
 <a name="1.0.7"></a>
 ## [1.0.7](https://gitlab.alibaba-inc.com/bigdata-node/verlog/compare/1.0.6...1.0.7) (2019-7-26 11:29:21)
 
