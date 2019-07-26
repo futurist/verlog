@@ -1,3 +1,12 @@
+<a name="1.0.12"></a>
+## [1.0.12](https://gitlab.alibaba-inc.com/bigdata-node/verlog/compare/1.0.11...1.0.12) (2019-7-26 20:52:57)
+
+- fix: remove onbeforeunload  [9ced5c9](https://gitlab.alibaba-inc.com/bigdata-node/verlog/commit/9ced5c9)
+- remove end commit button  [8497542](https://gitlab.alibaba-inc.com/bigdata-node/verlog/commit/8497542)
+- client close also close server  [634525d](https://gitlab.alibaba-inc.com/bigdata-node/verlog/commit/634525d)
+- fix: long line break word  [938df48](https://gitlab.alibaba-inc.com/bigdata-node/verlog/commit/938df48)
+
+
 <a name="1.0.11"></a>
 ## [1.0.11](https://gitlab.alibaba-inc.com/bigdata-node/verlog/compare/1.0.10...1.0.11) (2019-7-26 16:28:26)
 
