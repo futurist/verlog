@@ -3,7 +3,7 @@
 	<div style="flex:7; position: relative; font-size: 14px;">{{DIFF}}</div>
 </div>
 <div id="footer" style="position: relative; display: flex;">
-	<button onclick="submit()">提交</button>
+	<button onclick="submit()">提交</button>&nbsp;
 	<label>amend? <input type="checkbox" onclick="submitArgs = (this.checked ? ['--amend'] : [])"></label>
 </div>
 <dialog id="result"></dialog>
@@ -104,7 +104,8 @@
 				Accept: 'application/json'
 			}
 		}).then(r=>r.json()).then(ret=>{
-			dialog.innerHTML = `${ret.ok ? 'OK' : 'Fail'}<pre>$ ${ret.command}</pre><pre>${ret.message || ret.all}</pre>`
+			const command = ret.command ? `<pre>$ ${ret.command}</pre>` : ''
+			dialog.innerHTML = `${ret.ok ? 'OK' : 'Fail'}${command}<pre>${ret.message || ret.all}</pre>`
 			dialog.showModal()
 			dialog.onclick = e=>{
 				dialog.close()
