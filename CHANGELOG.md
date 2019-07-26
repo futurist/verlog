@@ -1,3 +1,9 @@
+<a name="1.0.10"></a>
+## [1.0.10](https://gitlab.alibaba-inc.com/bigdata-node/verlog/compare/1.0.9...1.0.10) (2019-7-26 14:10:21)
+
+- add actions after commit dialog  [1b33837](https://gitlab.alibaba-inc.com/bigdata-node/verlog/commit/1b33837)
+
+
 <a name="1.0.9"></a>
 ## [1.0.9](https://gitlab.alibaba-inc.com/bigdata-node/verlog/compare/1.0.8...1.0.9) (2019-7-26 13:26:16)
 
