@@ -66,6 +66,9 @@
 <script>
 	const dialog = document.getElementById('result')
 
+	window.onbeforeunload = e=>{
+		fetch('/end')
+	}
 	const allBlockNodes = []
 	const store = {
 		lastInput: '',
