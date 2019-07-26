@@ -122,8 +122,7 @@
 		}).then(r=>r.json()).then(ret=>{
 			const command = ret.command ? `<pre>$ ${ret.command}</pre>` : ''
 			const actions = ret.ok
-			? `<button onclick="window.location.reload()">Reload Page</button> &nbsp;
-				<button onclick="fetch('/end')">End Commit</button>`
+			? `<button onclick="window.location.reload()">Reload Page</button>`
 			: `<button onclick="dialog.close()">Close Dialog</button>`
 			dialog.innerHTML = `${ret.ok ? 'OK' : 'Fail'}${command}<pre>${ret.message || ret.all}</pre>${actions}`
 			dialog.showModal()
