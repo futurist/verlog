@@ -73,7 +73,7 @@
 <a name="1.0.3"></a>
 ## [1.0.3](https://gitlab.alibaba-inc.com/bigdata-node/verlog/compare/1.0.2...1.0.3) (2019-7-24 19:14:57)
 
-- change package name to @ali/verlog  [386001f](https://gitlab.alibaba-inc.com/bigdata-node/verlog/commit/386001f)
+- change package name to verlog  [386001f](https://gitlab.alibaba-inc.com/bigdata-node/verlog/commit/386001f)
 - build: 1.0.2+3  [5a7f520](https://gitlab.alibaba-inc.com/bigdata-node/verlog/commit/5a7f520)
 - add vl to bin  [6f24195](https://gitlab.alibaba-inc.com/bigdata-node/verlog/commit/6f24195)
 

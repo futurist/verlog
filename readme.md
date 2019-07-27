@@ -8,7 +8,7 @@ Generate Version and Changelog for git repo
 ## Install
 
 ```sh
-tnpm i -g @ali/verlog
+tnpm i -g verlog
 ```
 
 ## Usage
