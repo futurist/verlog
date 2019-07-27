@@ -81,36 +81,17 @@
 	function arrayUnique(arr){
 		return Array.from(new Set(arr))
 	}
-	let lastStatus = {}
 
 	var source = new EventSource("/events/")
-	source.onerror = function(e){
+	source.onerror = function(e) {
 		source.close()
-		lastStatus.offline = true
 		document.title = 'OFFLINE:' + document.title
 		const errDialog = document.getElementById('error')
 		errDialog.close()
 		errDialog.innerHTML = `<h4>OFFLINE? You can close this window now.</h4>`
 		errDialog.showModal()
 	}
-	function statusCheck(){
-		fetch('/status')
-		.then(r=>r.text())
-		.then(text=>{
-			lastStatus.title = text
-			document.title = text + " - diff"
-		})
-		.catch(err=>{
-			console.log(err)
-			lastStatus.offline = true
-			document.title = 'OFFLINE:' + lastStatus.title
-			const errDialog = document.getElementById('error')
-			errDialog.close()
-			errDialog.innerHTML = `<h4>OFFLINE? You can close this window now.</h4>${err}`
-			errDialog.showModal()
-		})
-	}
-	// setInterval(statusCheck, 1000)
+
 	var submitArgs = []
 	function getAllMessage (){
 		const additionalMessage = document.getElementById('additional-message').value

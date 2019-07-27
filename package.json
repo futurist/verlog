@@ -1,12 +1,12 @@
 {
-  "name": "@ali/verlog",
+  "name": "verlog",
   "version": "1.0.13",
   "build": 3,
-  "description": "A better `npm publish`",
+  "description": "Generate Version and Changelog for git repo",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "http://gitlab.alibaba-inc.com/bigdata-node/verlog.git"
+    "url": "https://github.com/futurist/verlog.git"
   },
   "author": {
     "name": "jamesyang.yjm"
@@ -14,6 +14,7 @@
   "bin": {
     "verlog": "source/cli.js",
     "vl": "source/cli.js",
+    "veradd": "source/cli-add.js",
     "va": "source/cli-add.js"
   },
   "engines": {
@@ -86,8 +87,5 @@
     "sinon": "^7.3.2",
     "xo": "^0.24.0"
   },
-  "publishConfig": {
-    "registry": "http://registry.npm.alibaba-inc.com"
-  },
-  "readme": "README.md"
+  "readme": "readme.md"
 }

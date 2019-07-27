@@ -59,16 +59,6 @@ const cli = meow(`
 	})
 
 	// close server if client is offline
-	let lastStatusCheck
-	const statusCheck = ()=>{
-		if(lastStatusCheck && Date.now() - lastStatusCheck > 2000) {
-			console.log('client offline, now exit')
-			process.exit(0)
-		}
-	}
-	// TODO: BUG: has unwanted close!
-	// setInterval(statusCheck, 300)
-
 	let clients = 0
 	let clientTimer
 	app.get('/events/', function (req, res) {
