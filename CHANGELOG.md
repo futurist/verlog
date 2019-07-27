@@ -1,3 +1,9 @@
+<a name="1.0.13"></a>
+## [1.0.13](https://gitlab.alibaba-inc.com/bigdata-node/verlog/compare/1.0.12...1.0.13) (2019-7-27 20:13:31)
+
+- feat: use eventsource instead of check status  [00b2fe9](https://gitlab.alibaba-inc.com/bigdata-node/verlog/commit/00b2fe9)
+
+
 <a name="1.0.12"></a>
 ## [1.0.12](https://gitlab.alibaba-inc.com/bigdata-node/verlog/compare/1.0.11...1.0.12) (2019-7-26 20:52:57)
 
