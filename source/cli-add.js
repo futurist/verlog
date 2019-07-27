@@ -52,7 +52,9 @@ const cli = meow(`
 			stdout = (await execa('git', ['diff', '--cached', '--color'])).stdout
 		}
 		const template = fs.readFileSync(path.join(__dirname, 'template.html'), 'utf8')
-		const result = template.replace('{{DIFF}}', newFiles + convert.toHtml(stdout))
+		const result = template
+		.replace('{{TITLE}}', pkg.name)
+		.replace('{{DIFF}}', newFiles + convert.toHtml(stdout))
 		res.send(result)
 	})
 
@@ -66,6 +68,29 @@ const cli = meow(`
 	}
 	// TODO: BUG: has unwanted close!
 	// setInterval(statusCheck, 300)
+
+	let clients = 0
+	let clientTimer
+	app.get('/events/', function (req, res) {
+		clearTimeout(clientTimer)
+		clients++
+		req.socket.setTimeout(Math.pow(2, 31) - 1);
+		req.on("close", function () {
+			clients--
+			clientTimer = setTimeout(()=>{
+				if(!clients) {
+					console.log('client offline')
+					process.exit(0)
+				}
+			}, 1000);
+		});
+		res.writeHead(200, {
+			'Content-Type': 'text/event-stream', // <- Important headers
+			'Cache-Control': 'no-cache',
+			'Connection': 'keep-alive'
+		});
+		res.write('\n');
+	})
 
 	// status check provider
 	app.get('/status', (req, res)=>{
