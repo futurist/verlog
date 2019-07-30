@@ -1,3 +1,11 @@
+<a name="1.0.14"></a>
+## [1.0.14](https://github.com/futurist/verlog/compare/1.0.13...1.0.14) (2019-7-30 10:11:52)
+
+- update changelog  [eb77cea](https://github.com/futurist/verlog/commit/eb77cea)
+- update docs  [548fa87](https://github.com/futurist/verlog/commit/548fa87)
+- clean up  [24dd18f](https://github.com/futurist/verlog/commit/24dd18f)
+
+
 <a name="1.0.13"></a>
 ## [1.0.13](https://github.com/futurist/verlog/compare/1.0.12...1.0.13) (2019-7-27 20:13:31)
 
