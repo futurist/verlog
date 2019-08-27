@@ -17,7 +17,7 @@ const execa = require('execa')
 const onExit = require('signal-exit')
 const AnsiToHtml = require('ansi-to-html');
 
-const pkg = util.readPkg();
+const pkg = util.readPkg() || {};
 
 const cli = meow(`
 	Usage
