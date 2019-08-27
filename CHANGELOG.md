@@ -1,3 +1,9 @@
+<a name="1.0.15"></a>
+## [1.0.15](https://github.com/futurist/verlog/compare/1.0.14...1.0.15) (2019-8-27 20:05:32)
+
+- fix: package lost throw  [a0749ae](https://github.com/futurist/verlog/commit/a0749ae)
+
+
 <a name="1.0.14"></a>
 ## [1.0.14](https://github.com/futurist/verlog/compare/1.0.13...1.0.14) (2019-7-30 10:11:52)
 
