@@ -10,6 +10,10 @@ const config = {
         cli: './source/cli.js',
         'cli-add': './source/cli-add.js'
     },
+    externals: {
+        meow: 'commonjs meow',
+        '@samverschueren/stream-to-observable': 'commonjs @samverschueren/stream-to-observable',
+    },
     output: { // the bundle is stored in the 'dist' folder (check package.json), 📖 -> https://webpack.js.org/configuration/output/
         path: path.resolve(__dirname, 'dist'),
         libraryTarget: "commonjs2",
