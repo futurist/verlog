@@ -1,3 +1,9 @@
+<a name="v1.0.19"></a>
+## [v1.0.19](https://github.com/futurist/verlog/compare/v1.0.18...v1.0.19) (9/10/2021, 11:59:40 PM)
+
+- fix: rxjs lost  [319508c](https://github.com/futurist/verlog/commit/319508c)
+
+
 <a name="v1.0.18"></a>
 ## [v1.0.18](https://github.com/futurist/verlog/compare/v1.0.17...v1.0.18) (9/10/2021, 11:52:47 PM)
 
