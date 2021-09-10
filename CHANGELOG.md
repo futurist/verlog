@@ -1,3 +1,9 @@
+<a name="v1.0.18"></a>
+## [v1.0.18](https://github.com/futurist/verlog/compare/v1.0.17...v1.0.18) (9/10/2021, 11:52:47 PM)
+
+- fix: template.html lost  [377e5ca](https://github.com/futurist/verlog/commit/377e5ca)
+
+
 <a name="v1.0.17"></a>
 ## [v1.0.17](https://github.com/futurist/verlog/compare/v1.0.16...v1.0.17) (9/10/2021, 2:16:47 PM)
 
