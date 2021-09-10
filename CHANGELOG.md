@@ -1,3 +1,10 @@
+<a name="v1.0.16"></a>
+## [v1.0.16](https://github.com/futurist/verlog/compare/1.0.15...v1.0.16) (9/10/2021, 12:51:03 PM)
+
+- esbuild work ok  [af35d09](https://github.com/futurist/verlog/commit/af35d09)
+- try to bundle  [a33b123](https://github.com/futurist/verlog/commit/a33b123)
+
+
 <a name="1.0.15"></a>
 ## [1.0.15](https://github.com/futurist/verlog/compare/1.0.14...1.0.15) (2019-8-27 20:05:32)
 
