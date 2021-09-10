@@ -1,3 +1,10 @@
+<a name="v1.0.17"></a>
+## [v1.0.17](https://github.com/futurist/verlog/compare/v1.0.16...v1.0.17) (9/10/2021, 2:16:47 PM)
+
+- fix: deps bug  [cd231c3](https://github.com/futurist/verlog/commit/cd231c3)
+- fix: deps bug  [4e68038](https://github.com/futurist/verlog/commit/4e68038)
+
+
 <a name="v1.0.16"></a>
 ## [v1.0.16](https://github.com/futurist/verlog/compare/1.0.15...v1.0.16) (9/10/2021, 12:51:03 PM)
 
