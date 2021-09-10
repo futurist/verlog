@@ -24,7 +24,7 @@
     "yarn": ">=1.7.0"
   },
   "scripts": {
-    "build": "esbuild source/cli.js --outfile=./dist/cli.js --bundle --minify --external:meow --platform=node --target=node8; esbuild source/cli-add.js --outfile=./dist/cli-add.js --bundle --minify --external:meow --platform=node --target=node8; esbuild node_modules/meow/index.js --outfile=./dist/node_modules/meow/index.js --bundle --minify --platform=node --target=node8",
+    "build": "esbuild source/cli.js --outfile=./dist/cli.js --bundle --minify --external:meow --platform=node --target=node8; esbuild source/cli-add.js --outfile=./dist/cli-add.js --bundle --minify --external:meow --platform=node --target=node8; esbuild node_modules/meow/index.js --outfile=./dist/node_modules/meow/index.js --bundle --minify --platform=node --target=node8; cp source/*.html dist/",
     "test": "xo && FORCE_HYPERLINK=1 ava"
   },
   "files": [
@@ -42,11 +42,11 @@
     "commit"
   ],
   "dependencies": {
-    "@samverschueren/stream-to-observable": "^0.3.0"
+    "@samverschueren/stream-to-observable": "^0.3.0",
+    "any-observable": "^0.4.0"
   },
   "devDependencies": {
     "ansi-to-html": "^0.6.11",
-    "any-observable": "^0.4.0",
     "async-exit-hook": "^2.0.1",
     "ava": "^2.1.0",
     "body-parser": "^1.19.0",
