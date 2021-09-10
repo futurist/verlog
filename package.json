@@ -12,10 +12,10 @@
     "name": "jamesyang.yjm"
   },
   "bin": {
-    "verlog": "source/cli.js",
-    "vl": "source/cli.js",
-    "veradd": "source/cli-add.js",
-    "va": "source/cli-add.js"
+    "verlog": "dist/cli.js",
+    "vl": "dist/cli.js",
+    "veradd": "dist/cli-add.js",
+    "va": "dist/cli-add.js"
   },
   "engines": {
     "node": ">=8",
@@ -24,10 +24,11 @@
     "yarn": ">=1.7.0"
   },
   "scripts": {
+    "build": "esbuild source/cli.js --outfile=./dist/cli.js  --bundle --platform=node --target=node8; esbuild source/cli-add.js --outfile=./dist/cli-add.js  --bundle --platform=node --target=node8",
     "test": "xo && FORCE_HYPERLINK=1 ava"
   },
   "files": [
-    "source"
+    "dist"
   ],
   "keywords": [
     "cli-app",
@@ -40,15 +41,18 @@
     "bump",
     "commit"
   ],
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "@samverschueren/stream-to-observable": "^0.3.0",
     "ansi-to-html": "^0.6.11",
     "any-observable": "^0.4.0",
     "async-exit-hook": "^2.0.1",
+    "ava": "^2.1.0",
     "body-parser": "^1.19.0",
     "chalk": "^2.3.0",
     "cosmiconfig": "^5.2.1",
     "del": "^4.1.0",
+    "esbuild": "^0.12.26",
     "escape-string-regexp": "^2.0.0",
     "execa": "^2.0.1",
     "express": "^4.17.1",
@@ -71,20 +75,20 @@
     "p-memoize": "^3.1.0",
     "p-timeout": "^3.1.0",
     "pkg-dir": "^4.1.0",
+    "proxyquire": "^2.1.0",
     "read-pkg-up": "^6.0.0",
     "rxjs": "^6.3.3",
     "semver": "^6.1.2",
+    "shebang2-loader": "^1.0.1",
     "signal-exit": "^3.0.2",
+    "sinon": "^7.3.2",
     "split": "^1.0.0",
     "symbol-observable": "^1.2.0",
     "terminal-link": "^1.2.0",
     "update-notifier": "^3.0.0",
-    "write-pkg": "^4.0.0"
-  },
-  "devDependencies": {
-    "ava": "^2.1.0",
-    "proxyquire": "^2.1.0",
-    "sinon": "^7.3.2",
+    "webpack": "4",
+    "webpack-cli": "4",
+    "write-pkg": "^4.0.0",
     "xo": "^0.24.0"
   },
   "readme": "readme.md"
