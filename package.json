@@ -11,6 +11,7 @@
   "author": {
     "name": "jamesyang.yjm"
   },
+  "main": "dist/cli.js",
   "bin": {
     "verlog": "dist/cli.js",
     "vl": "dist/cli.js",
