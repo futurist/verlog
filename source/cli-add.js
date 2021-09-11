@@ -145,7 +145,11 @@ const cli = meow(`
 		}
 		let link = `http://${address}:${port}`
 		console.log(`listen on:\n${link}`)
-		await open(link);
+		try {
+			await open(link);
+		} catch(e) {
+			console.log(e.message);
+		}
 	})
 	onExit(function (code, signal) {
 		console.log('process exited!')
