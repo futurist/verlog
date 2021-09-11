@@ -1,7 +1,7 @@
 {
   "name": "verlog",
   "version": "1.0.30",
-  "build": 4,
+  "build": 5,
   "description": "Generate Version and Changelog for git repo",
   "license": "MIT",
   "repository": {
@@ -96,5 +96,5 @@
     "url": "https://github.com/futurist/verlog/issues"
   },
   "homepage": "https://github.com/futurist/verlog#readme",
-  "_id": "verlog@1.0.24"
+  "_id": "verlog@1.0.30"
 }
