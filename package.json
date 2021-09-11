@@ -1,12 +1,12 @@
 {
   "name": "verlog",
   "version": "1.0.24",
-  "build": 3,
+  "build": 4,
   "description": "Generate Version and Changelog for git repo",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/futurist/verlog.git"
+    "url": "git+https://github.com/futurist/verlog.git"
   },
   "author": {
     "name": "jamesyang.yjm"
@@ -93,5 +93,10 @@
     "write-pkg": "^4.0.0",
     "xo": "^0.24.0"
   },
-  "readme": "readme.md"
+  "readme": "readme.md",
+  "bugs": {
+    "url": "https://github.com/futurist/verlog/issues"
+  },
+  "homepage": "https://github.com/futurist/verlog#readme",
+  "_id": "verlog@1.0.24"
 }
