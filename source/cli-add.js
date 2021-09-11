@@ -38,16 +38,16 @@ const cli = meow(`
     }
 });
 
-if (cli.flags.verlog) {
-	const child = cp.spawn(process.execPath, [ __dirname + '/cli.js' ], {
-		stdio: 'inherit',
-		detached: true
-	});
-	child.unref();
-	process.exit();
-}
-
 (async () => {
+
+	if (cli.flags.verlog) {
+		try {
+			cp.execFileSync(process.execPath, [ __dirname + '/cli.js' ], {
+				stdio: 'inherit'
+			});
+		}catch(e) {}
+		return;
+	}
 
 	var convert = new AnsiToHtml({
 		newline: true,

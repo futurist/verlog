@@ -107,12 +107,12 @@ const cli = meow(`
 	};
 
 	if (flags.add) {
-		const child = cp.spawn(process.execPath, [ __dirname + '/cli-add.js' ], {
-			stdio: 'inherit',
-			detached: true
-		});
-		child.unref();
-		process.exit();
+		try {
+			cp.execFileSync(process.execPath, [ __dirname + '/cli-add.js' ], {
+				stdio: 'inherit',
+			});
+		} catch(e) {}
+		return;
 	}
 
 	const isAvailable = true // flags.publish ? await isPackageNameAvailable(pkg) : false;
