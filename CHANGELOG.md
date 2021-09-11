@@ -1,3 +1,9 @@
+<a name="v1.0.29"></a>
+## [v1.0.29](https://github.com/futurist/verlog/compare/v1.0.28...v1.0.29) (9/11/2021, 1:39:41 AM)
+
+- remove va  [8b2eb28](https://github.com/futurist/verlog/commit/8b2eb28)
+
+
 <a name="v1.0.28"></a>
 ## [v1.0.28](https://github.com/futurist/verlog/compare/v1.0.27...v1.0.28) (9/11/2021, 1:30:16 AM)
 
