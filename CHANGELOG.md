@@ -1,3 +1,9 @@
+<a name="v1.0.32"></a>
+## [v1.0.32](https://github.com/futurist/verlog/compare/v1.0.31...v1.0.32) (9/11/2021, 9:07:13 PM)
+
+- fix: uncaughtException for xdg-open ENOENT  [b7a25da](https://github.com/futurist/verlog/commit/b7a25da)
+
+
 <a name="v1.0.31"></a>
 ## [v1.0.31](https://github.com/futurist/verlog/compare/v1.0.30...v1.0.31) (9/11/2021, 8:54:31 PM)
 
