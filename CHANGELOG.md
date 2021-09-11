@@ -1,3 +1,9 @@
+<a name="v1.0.24"></a>
+## [v1.0.24](https://github.com/futurist/verlog/compare/v1.0.23...v1.0.24) (9/11/2021, 12:59:14 AM)
+
+- fix: rxjs  [28fe7f2](https://github.com/futurist/verlog/commit/28fe7f2)
+
+
 <a name="v1.0.23"></a>
 ## [v1.0.23](https://github.com/futurist/verlog/compare/v1.0.22...v1.0.23) (9/11/2021, 12:52:13 AM)
 
