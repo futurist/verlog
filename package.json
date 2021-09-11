@@ -1,6 +1,6 @@
 {
   "name": "verlog",
-  "version": "1.0.24",
+  "version": "1.0.23",
   "build": 3,
   "description": "Generate Version and Changelog for git repo",
   "license": "MIT",
@@ -14,7 +14,9 @@
   "main": "dist/cli.js",
   "bin": {
     "verlog": "dist/cli.js",
-    "vl": "dist/cli.js"
+    "vl": "dist/cli.js",
+    "veradd": "dist/cli-add.js",
+    "va": "dist/cli-add.js"
   },
   "engines": {
     "node": ">=8",
@@ -23,7 +25,7 @@
     "yarn": ">=1.7.0"
   },
   "scripts": {
-    "build": "esbuild source/cli.js --outfile=./dist/cli.js --bundle --minify --external:meow --platform=node --target=node8; esbuild source/cli-add.js --outfile=./dist/cli-add.js --bundle --minify --external:meow --platform=node --target=node8; esbuild node_modules/meow/index.js --outfile=./dist/node_modules/meow/index.js --bundle --minify --platform=node --target=node8; cp source/*.html dist/",
+    "build": "esbuild source/cli.js --outfile=./dist/cli.js --bundle --minify --external:meow --platform=node --target=node8; esbuild source/cli-add.js --outfile=./dist/cli-add.js --bundle --minify --external:meow --platform=node --target=node8; esbuild node_modules/meow/index.js --outfile=./dist/node_modules/meow/index.js --bundle --minify --platform=node --target=node8;  esbuild node_modules/rxjs/index.js --outfile=./dist/node_modules/rxjs/index.js --bundle --minify --platform=node --target=node8; cp source/*.html dist/",
     "test": "xo && FORCE_HYPERLINK=1 ava"
   },
   "files": [
@@ -42,8 +44,7 @@
   ],
   "dependencies": {
     "@samverschueren/stream-to-observable": "^0.3.1",
-    "any-observable": "^0.5.1",
-    "rxjs": "^6.3.3"
+    "any-observable": "^0.5.1"
   },
   "devDependencies": {
     "ansi-to-html": "^0.6.11",
@@ -78,6 +79,7 @@
     "pkg-dir": "^4.1.0",
     "proxyquire": "^2.1.0",
     "read-pkg-up": "^6.0.0",
+    "rxjs": "^6.3.3",
     "semver": "^6.1.2",
     "shebang2-loader": "^1.0.1",
     "signal-exit": "^3.0.2",

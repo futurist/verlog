@@ -2,7 +2,6 @@
 'use strict';
 // eslint-disable-next-line import/no-unassigned-import
 require('symbol-observable'); // Important: This needs to be first to prevent weird Observable incompatibilities
-require('any-observable/register/rxjs-all'); // eslint-disable-line import/no-unassigned-import
 const logSymbols = require('log-symbols');
 const meow = require('meow');
 const config = require('./config');
