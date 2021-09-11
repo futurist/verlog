@@ -29,9 +29,22 @@ const cli = meow(`
 `, {
 	booleanDefault: undefined,
 	flags: {
-	}
+		verlog: {
+			type: 'boolean',
+			default: false,
+			alias: 'l'
+		}
+    }
 });
 
+if (cli.flags.verlog) {
+	const child = cp.spawn(process.execPath, [ __dirname + '/cli.js' ], {
+		stdio: 'inherit',
+		detached: true
+	});
+	child.unref();
+	process.exit();
+}
 
 (async () => {
 
