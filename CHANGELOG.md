@@ -1,3 +1,9 @@
+<a name="v1.0.22"></a>
+## [v1.0.22](https://github.com/futurist/verlog/compare/v1.0.21...v1.0.22) (9/11/2021, 12:36:24 AM)
+
+- fix: main  [0dd0e25](https://github.com/futurist/verlog/commit/0dd0e25)
+
+
 <a name="v1.0.21"></a>
 ## [v1.0.21](https://github.com/futurist/verlog/compare/v1.0.20...v1.0.21) (9/11/2021, 12:35:27 AM)
 
