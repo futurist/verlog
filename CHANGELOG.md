@@ -1,3 +1,11 @@
+<a name="v1.0.25"></a>
+## [v1.0.25](https://github.com/futurist/verlog/compare/v1.0.24...v1.0.25) (9/11/2021, 1:07:07 AM)
+
+- build: 1.0.24+4  [3f43b34](https://github.com/futurist/verlog/commit/3f43b34)
+- 1.0.24  [43ac1cb](https://github.com/futurist/verlog/commit/43ac1cb)
+- fix: rxjs  [0804243](https://github.com/futurist/verlog/commit/0804243)
+
+
 <a name="v1.0.24"></a>
 ## [v1.0.24](https://github.com/futurist/verlog/compare/v1.0.24...v1.0.24) (9/11/2021, 1:05:22 AM)
 
