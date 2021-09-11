@@ -1,3 +1,10 @@
+<a name="v1.0.31"></a>
+## [v1.0.31](https://github.com/futurist/verlog/compare/v1.0.30...v1.0.31) (9/11/2021, 8:54:31 PM)
+
+- fix: open error  [b56ff7e](https://github.com/futurist/verlog/commit/b56ff7e)
+- build: 1.0.30+5  [81e1090](https://github.com/futurist/verlog/commit/81e1090)
+
+
 <a name="v1.0.29"></a>
 ## [v1.0.29](https://github.com/futurist/verlog/compare/v1.0.28...v1.0.29) (9/11/2021, 1:39:41 AM)
 

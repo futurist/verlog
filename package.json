@@ -1,6 +1,6 @@
 {
   "name": "verlog",
-  "version": "1.0.30",
+  "version": "1.0.31",
   "build": 5,
   "description": "Generate Version and Changelog for git repo",
   "license": "MIT",
