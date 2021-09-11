@@ -12,6 +12,7 @@ const version = require('./version');
 const util = require('./util');
 const ui = require('./ui');
 const np = require('.');
+const cp = require('child_process');
 
 const cli = meow(`
 	Usage
@@ -22,6 +23,7 @@ const cli = meow(`
 	    ${version.SEMVER_INCREMENTS.join(' | ')} | 1.2.3
 
 	Options
+	  -a, --add           Invoke veradd
 	  --any-branch        Allow publishing from any branch
 	  --no-cleanup        Skips cleanup of node_modules
 	  --no-tests          Skips tests
@@ -42,6 +44,11 @@ const cli = meow(`
 `, {
 	booleanDefault: undefined,
 	flags: {
+		add: {
+			type: 'boolean',
+			default: false,
+			alias: 'a'
+		},
 		anyBranch: {
 			type: 'boolean',
 			default: true
@@ -81,7 +88,6 @@ const cli = meow(`
 // updateNotifier({pkg: cli.pkg}).notify();
 
 (async () => {
-	const pkg = util.readPkg();
 
 	const defaultFlags = {
 		cleanup: false,
@@ -100,9 +106,20 @@ const cli = meow(`
 		...cli.flags
 	};
 
+	if (flags.add) {
+		const child = cp.spawn(process.execPath, [ __dirname + '/cli-add.js' ], {
+			stdio: 'inherit',
+			detached: true
+		});
+		child.unref();
+		process.exit();
+	}
+
 	const isAvailable = true // flags.publish ? await isPackageNameAvailable(pkg) : false;
 
 	const version = cli.input.length > 0 ? cli.input[0] : false;
+
+	const pkg = util.readPkg();
 
 	const options = await ui({...flags, exists: !isAvailable, version}, pkg);
 
