@@ -1,3 +1,9 @@
+<a name="v1.0.28"></a>
+## [v1.0.28](https://github.com/futurist/verlog/compare/v1.0.27...v1.0.28) (9/11/2021, 1:30:16 AM)
+
+- add -l for veradd  [39273e0](https://github.com/futurist/verlog/commit/39273e0)
+
+
 <a name="v1.0.27"></a>
 ## [v1.0.27](https://github.com/futurist/verlog/compare/v1.0.26...v1.0.27) (9/11/2021, 1:18:35 AM)
 
