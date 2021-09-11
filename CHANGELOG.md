@@ -1,3 +1,9 @@
+<a name="v1.0.20"></a>
+## [v1.0.20](https://github.com/futurist/verlog/compare/v1.0.19...v1.0.20) (9/11/2021, 12:31:24 AM)
+
+- add -a arg  [21884d6](https://github.com/futurist/verlog/commit/21884d6)
+
+
 <a name="v1.0.19"></a>
 ## [v1.0.19](https://github.com/futurist/verlog/compare/v1.0.18...v1.0.19) (9/10/2021, 11:59:40 PM)
 
