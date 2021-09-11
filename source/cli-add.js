@@ -160,3 +160,11 @@ const cli = meow(`
 	console.error(`\n${logSymbols.error} ${error.message}`);
 	process.exit(1);
 });
+
+process.on('uncaughtException', e => {
+	if( e.message.includes('spawn xdg-open ENOENT')) {
+		console.log('cannot open browser, please open above link manually.')
+	} else {
+		throw e
+	}
+});
